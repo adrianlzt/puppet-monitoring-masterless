@@ -50,3 +50,6 @@ package { 'rubygem-json':
 class { 'facter_propios': 
   facts => '{ "env": "pre" }',
 }
+class { 'puppetdb-masterless':
+  require => Class['puppetclient'],
+} 
