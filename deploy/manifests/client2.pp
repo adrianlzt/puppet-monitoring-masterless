@@ -24,3 +24,6 @@ class { 'puppetclient':
 class { 'facter_propios': 
   facts => '{"monitoring": "true","project": "bluevia", "env": "dev-vagrant", "interface": "eth1"}',
 }
+class { 'puppetdb-masterless':
+  require => Class['puppetclient'],
+}
