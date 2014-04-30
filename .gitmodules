@@ -1,0 +1,3 @@
+[submodule "ui"]
+	path = ui
+	url = git@github.com:adrianlzt/puppet-monitoring-ui.git
