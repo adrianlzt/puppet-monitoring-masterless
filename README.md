@@ -26,7 +26,7 @@ Entorno vagrant con tres máquinas, SO centos 6.4, provider virtualbox.
 
 Tras esto deberemos tener icinga configurado y monitorizando las dos máquina clientes.
 
-Para acceder a la interfaz web: http://icingaadmin:icingaadmin@192.168.51.4/icinga/
+Para acceder a la interfaz web: http://icingaadmin:icingaadmin@192.168.61.4/icinga/
 
 
 # Salir de la monitorización
@@ -80,8 +80,8 @@ Y volver a ejecutar puppet:
 
 Necesario tener en el /etc/hosts:
 
-192.168.51.4 monit.inet graphite.monit.inet test.monit.inet
-192.168.51.2 ui.monit.inet
+192.168.61.4 monit.inet graphite.monit.inet test.monit.inet
+192.168.61.2 ui.monit.inet
 
 
 http://ui.monit.inet
