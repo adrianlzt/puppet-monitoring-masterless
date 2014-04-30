@@ -22,6 +22,7 @@ class puppetdb-masterless (
   }
   
   file { '/etc/puppet/manifests' :
+    ensure => 'directory',
     owner => 'root',
     group => 'root',
   }
