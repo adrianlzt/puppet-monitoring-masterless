@@ -9,15 +9,16 @@ class monitorizacion::puppetmaster
     ensure => present,
   }
 
-  package { "ruby-pg":
-    ensure => present,
-  }
-
-  package { "rubygem-hiera-postgres-backend":
-    ensure => present,
-    require => [Package['puppetmaster'],Package['ruby-pg']],
-    notify => Service['puppetmaster'],
-  }
+# Configurado en deploy
+#  package { "ruby-pg":
+#    ensure => present,
+#  }
+#
+#  package { "rubygem-hiera-postgres-backend":
+#    ensure => present,
+#    require => [Package['puppetmaster'],Package['ruby-pg']],
+#    notify => Service['puppetmaster'],
+#  }
 
   # Defined types en hiera como ENC
   # http://blog.yo61.com/assigning-resources-to-nodes-with-hiera-in-puppet/

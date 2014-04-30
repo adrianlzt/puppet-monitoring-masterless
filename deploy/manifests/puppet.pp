@@ -54,6 +54,17 @@ class {'puppetmaster':
   require => File['/etc/puppet/autosign.conf'],
 }
 
+package { "ruby-pg":
+  ensure => present,
+}
+
+package { "rubygem-hiera-postgres-backend":
+  ensure => present,
+  require => [Package['puppetmaster'],Package['ruby-pg']],
+  notify => Service['puppetmaster'],
+}
+
+
 # Instalo postgresql listo para usar con puppetdb
 class { 'puppetdb::database::postgresql': 
   listen_addresses           => '*',
@@ -69,3 +80,8 @@ class {'monitoring_data':
   database => $database,
   importedflag => $importedflag,
 }
+
+class { 'facter_propios': 
+  facts => '{ "env": "dev-vagrant" }',
+}
+
