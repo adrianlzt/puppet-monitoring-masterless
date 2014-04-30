@@ -1,6 +1,7 @@
 node 'puppet' inherits default {
   class { 'puppetdb':
     database_listen_address => "*",
+    listen_address => '0.0.0.0',
   }
   include puppetdb::master::config
   include monitorizacion::puppetmaster
