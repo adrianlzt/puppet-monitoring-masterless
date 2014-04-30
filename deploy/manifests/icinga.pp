@@ -37,6 +37,7 @@ yumrepo { 'bintray':
 
 class { 'puppetlabs_yum': }
 class { 'puppetclient': 
+  server => 'false',
   require => Class['puppetlabs_yum'],
 }
 
@@ -51,5 +52,6 @@ class { 'facter_propios':
   facts => '{ "env": "pre" }',
 }
 class { 'puppetdb-masterless':
+  server => 'puppet',
   require => Class['puppetclient'],
 } 
