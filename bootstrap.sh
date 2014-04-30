@@ -18,4 +18,4 @@ vagrant provision client2 --provision-with shell
 vagrant provision icinga --provision-with shell
 
 
-echo "Acceder a la interfaz web: http://icingaadmin:icingaadmin@192.168.51.4/icinga"
+echo "Acceder a la interfaz web: http://icingaadmin:icingaadmin@192.168.61.4/icinga"

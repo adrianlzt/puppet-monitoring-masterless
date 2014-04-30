@@ -8,11 +8,11 @@ service {'iptables':
 }
 
 host { 'puppet':
-  ip => '192.168.51.2',
+  ip => '192.168.61.2',
 }
 
 host { 'icinga':
-  ip => '192.168.51.4',
+  ip => '192.168.61.4',
 }
 
 class { 'epel': }

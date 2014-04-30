@@ -1,7 +1,7 @@
 {
   "pacemaker": "false",
-  "allowed_hosts": "192.168.51.4",
-  "icinga_host": "192.168.51.4",
+  "allowed_hosts": "192.168.61.4",
+  "icinga_host": "192.168.61.4",
   "graphite_secret_key": "claveSecreeeeeta",
   "graphite_web_servername": "graphite.monit.inet",
   "ui_virtualhost": "ui.monit.inet",
