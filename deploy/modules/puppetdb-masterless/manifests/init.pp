@@ -1,19 +1,14 @@
-class puppetdb-masterless {
+class puppetdb-masterless (
+  $server = 'puppet'
+)
+{
 
   package { 'puppetdb-terminus':
     ensure => latest,
   }
   
-  $puppet_server = 'puppet'
   file { '/etc/puppet/puppetdb.conf':
     content => template("${module_name}/puppetdb.conf.erb"),
-    owner => 'root',
-    group => 'root',
-    mode => '0644',
-  }
-  
-  file { '/etc/puppet/puppet.conf':
-    content => template("${module_name}/puppet.conf.erb"),
     owner => 'root',
     group => 'root',
     mode => '0644',
