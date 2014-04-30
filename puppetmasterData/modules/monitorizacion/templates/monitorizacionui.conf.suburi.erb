@@ -1,0 +1,7 @@
+RailsBaseURI /<%= @alias %>
+<Directory <%= @document_root %>/public>
+  Allow from all
+  Options -MultiViews
+  RailsEnv production
+</Directory>
+

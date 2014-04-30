@@ -1,0 +1,96 @@
+{
+  "name": "leinaddm-htpasswd",
+  "author": "Daniel De Marco",
+  "summary": "Puppet module to manage htpasswd and htgroup files",
+  "source": "UNKNOWN",
+  "dependencies": [
+
+  ],
+  "types": [
+    {
+      "properties": [
+        {
+          "name": "ensure",
+          "doc": "The basic property that the resource should be in.\n\nValid values are `present`, `absent`. "
+        },
+        {
+          "name": "users",
+          "doc": "The list of users to be included in the group\n\n"
+        },
+        {
+          "name": "target",
+          "doc": "Location of the htgreoup file\n\n"
+        }
+      ],
+      "providers": [
+        {
+          "name": "parsed",
+          "doc": "htgroup provider that uses the ParsedFile class"
+        }
+      ],
+      "name": "htgroup",
+      "doc": "Manage an Apache style htgroup file\n\nhtgroup { 'admins':\n  ensure => present,\n  users  => [ddm, foo, bar],\n  target => '/etc/httpd/conf/htgroup',\n}",
+      "parameters": [
+        {
+          "name": "name",
+          "doc": "The group name\n\n"
+        }
+      ]
+    },
+    {
+      "properties": [
+        {
+          "name": "ensure",
+          "doc": "The basic property that the resource should be in.\n\nValid values are `present`, `absent`. "
+        },
+        {
+          "name": "username",
+          "doc": "The user name. Defaults to the resource title if not provided\n\n"
+        },
+        {
+          "name": "cryptpasswd",
+          "doc": "The encrypted password for the given user\n\n"
+        },
+        {
+          "name": "target",
+          "doc": "Location of the htpasswd file\n\n"
+        }
+      ],
+      "providers": [
+        {
+          "name": "parsed",
+          "doc": "htpasswd provider that uses the ParsedFile class"
+        }
+      ],
+      "name": "htpasswd",
+      "doc": "Manage an Apache style htpasswd file\n\nhtpasswd { 'user':\n  ensure      => present,\n  cryptpasswd => 'encrypted password',\n  target      => '/etc/httpd/conf/htpasswd',\n}",
+      "parameters": [
+        {
+          "name": "name",
+          "doc": "The resource name\n\n"
+        }
+      ]
+    }
+  ],
+  "license": "Apache License, Version 2.0",
+  "project_page": "https://github.com/leinaddm/puppet-htpasswd",
+  "description": "UNKNOWN",
+  "version": "0.0.2",
+  "checksums": {
+    "lib/puppet/parser/functions/ht_md5.rb": "dadf5890c9e12b9310fa8d16227e83ec",
+    "Modulefile": "ab7003db94668944f4fc3a85de7d503b",
+    "lib/puppet/type/htgroup.rb": "bd52449985b81d121f39128345779743",
+    "spec/functions/ht_sha1_spec.rb": "77957c9c62bd1ef03cc2b87744f171ca",
+    "lib/puppet/provider/htpasswd/parsed.rb": "9202d8f4d697fc9a8ec9410c120b0d1c",
+    "spec/spec_helper.rb": "3ea886dd135e120afa31e0aab12e85b0",
+    "README.md": "156233314439f07ff33a673ed4e74df5",
+    "Rakefile": "8ff6a0f7db638421d1742c5d365d0266",
+    "lib/puppet/parser/functions/ht_crypt.rb": "dc8e1a22eb412f1c80bfdd805c51b7dd",
+    "lib/puppet/provider/htgroup/parsed.rb": "f06a6f2cba2c6829fd655f5c4cdafcef",
+    "lib/puppet/type/htpasswd.rb": "290bcb7075b72b45cc046b4f8cc4f946",
+    "spec/functions/ht_md5_spec.rb": "38540991376ff696893932dd594ab960",
+    "spec/functions/ht_crypt_spec.rb": "7c3a1a0f342694561f28eabf9640b21e",
+    "Gemfile": "6992d521994d948eb6e48acd733a07bf",
+    "lib/puppet/parser/functions/ht_sha1.rb": "d0d0feaefc059e86fdf68757889b9f7b"
+  }
+}

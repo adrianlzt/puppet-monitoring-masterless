@@ -1,0 +1,9 @@
+<VirtualHost *:<%= @port %>>
+    ServerName <%= @virtualhost %>
+    DocumentRoot <%= @document_root %>/public
+    <Directory <%= @document_root %>/public>
+        Allow from all
+        Options -MultiViews
+    </Directory>
+    RailsEnv production
+</VirtualHost>

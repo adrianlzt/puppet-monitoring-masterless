@@ -1,0 +1,1 @@
+services: SELECT s.name,s.params,c.puppet_type FROM services AS s, checks AS c, host_groups AS h, projects AS p, environments AS e WHERE s.check_id=c.id AND s.host_group_id=h.id AND h.project_id=p.id AND s.environment_id=e.id AND e.name = '%{::env}' AND h.name = ANY(string_to_array('%{::hostgroup}',',')) AND p.name = '%{::project}';

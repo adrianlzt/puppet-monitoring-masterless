@@ -1,0 +1,35 @@
+---
+modules:
+    gearmand:
+        module: wishbone.input.gearman
+        arguments:
+            hostlist:
+                - <%= @gearman_host %>
+            secret: <%= @gearman_key %>
+            queue: perfdata
+            workers: <%= @workers %>
+
+    decode:
+        module: metricfactory.decoder.modgearman
+
+    encode:
+        module: wishbone.builtin.metrics.graphite
+        arguments:
+            prefix: icinga.
+            script: false
+
+    stdout:
+        module: wishbone.builtin.output.stdout
+
+    tcpout:
+        module: wishbone.output.tcp
+        arguments:
+            host: <%= @graphite_host %>
+            port: <%= @graphite_port %>
+
+routingtable:
+
+    - gearmand.outbox   -> decode.inbox
+    - decode.outbox     -> encode.inbox
+#    - encode.outbox     -> stdout.inbox # To debug
+    - encode.outbox     -> tcpout.inbox

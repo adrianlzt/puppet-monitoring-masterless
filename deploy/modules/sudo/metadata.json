@@ -1,0 +1,37 @@
+{
+  "name": "rendhalver-sudo",
+  "version": "1.1.0",
+  "source": "UNKNOWN",
+  "author": "rendhalver",
+  "license": "Apache License, Version 2.0",
+  "summary": "secure extensible sudo setup for puppet",
+  "description": "secure extensible sudo setup for puppet",
+  "project_page": "https://github.com/rendhalver/puppet-sudo",
+  "dependencies": [
+    {
+      "name": "puppetlabs/concat"
+    }
+  ],
+  "types": [
+
+  ],
+  "checksums": {
+    "Modulefile": "e183c761c44051b05c8c8b274cfd692a",
+    "README.md": "6081aaff5c0bfeda7ad35ea50216627b",
+    "manifests/cmnd.pp": "b5e72f0c9aed1ffc8a560934b5e6d14d",
+    "manifests/config.pp": "dd1883de7fb60e7d008fa8f55c9a09ed",
+    "manifests/host.pp": "dbe94d165cae1240df92ef97834ee8e2",
+    "manifests/init.pp": "770d36dc0e2af047fea80afef8519c74",
+    "manifests/install.pp": "b25133553218246026458d438b3b3e92",
+    "manifests/params.pp": "2779a29a3ca2a17ac5a02bf5a14b08c3",
+    "manifests/register.pp": "fb435e3274feb04286e88a0dab2ef69a",
+    "manifests/rule.pp": "74a7b6c627c46d05dde931f488acf6da",
+    "manifests/runas.pp": "13a105d019e5f9a54135caf69079c5dd",
+    "templates/alias.erb": "faf89d787594ace9b277fd8af6af1046",
+    "templates/cmnd.erb": "4b5ca8f8ed778232ad86bb636c5851bc",
+    "templates/host.erb": "915bf2d732d741d75239cf59b134e38b",
+    "templates/rule.erb": "3aec415c93bf07b73eef811c40c4f6f5",
+    "templates/runas.erb": "655f6eed013b892e560c67fa36b810ef",
+    "templates/sudoers.erb": "4509f49d3459c1b43f38b464ab246793"
+  }
+}

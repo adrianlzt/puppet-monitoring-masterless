@@ -1,0 +1,39 @@
+{
+  "name": "stahnma-puppetlabs_yum",
+  "version": "0.1.4",
+  "source": "http://github.com/stahnma/puppet-module-puppetlabs_yum",
+  "author": "stahnma",
+  "license": "Apache License, Version 2.0",
+  "summary": "Setup the Puppet Labs Yum package repo",
+  "description": "Setup the Puppet Labs Yum  package repo on EL/Fedora ",
+  "project_page": "http://github.com/stahnma/puppet-module-puppetlabs_yum",
+  "dependencies": [
+
+  ],
+  "types": [
+
+  ],
+  "checksums": {
+    "Gemfile": "2a27c29c835749c9c10b12d79e797dfc",
+    "Modulefile": "a29a7377171a04e4c0320ccf542ce754",
+    "README.md": "692e32037012f9496aaab630b47f269e",
+    "Rakefile": "c2ba70ed2432cfde56e3109a3b67ecb5",
+    "files/RPM-GPG-KEY-puppetlabs": "3adade202b204a95f96cec0f750767b6",
+    "lib/facter/os_maj_version.rb": "0f19c87eca831a094fe83b1a79937b76",
+    "lib/facter/pper_installed.rb": "c1880a67866d03375a68b9a90992ce9e",
+    "manifests/deps.pp": "61166cf2a0e1441684511b4a2a55b1c4",
+    "manifests/devel.pp": "6700d474a2da926d0c78f9f125bc199b",
+    "manifests/init.pp": "6e86d9b5ee8e2cdb818b049bc3d67601",
+    "manifests/params.pp": "9d41f9b283338def2b152ad0413e124b",
+    "manifests/products.pp": "b2afcb0948ca3cbd1201a7ce1387c5ca",
+    "manifests/rpm_gpg_key.pp": "d6cbedf903acb3f953438bb33ddc46f4",
+    "spec/classes/deps_spec.rb": "e283975fdb993ff746696ef924ac340d",
+    "spec/classes/devel_spec.rb": "83920c3fd1df634ecaaf7949e678b1c6",
+    "spec/classes/products_spec.rb": "8625470eca2a879cf9895d210a454149",
+    "spec/classes/puppetlabs_yum_spec.rb": "7483f3499977aa8a21254a442eaaf538",
+    "spec/classes/puppetlabs_yum_spec.rb.new": "caedef950293bc03b98f6d8636edf3db",
+    "spec/defines/rpm_gpg_key_spec.rb": "1a4843c61169b270250329397442b492",
+    "spec/spec_helper.rb": "0db89c9a486df193c0e40095422e19dc",
+    "tests/init.pp": "c2f7eb3d2adefa4227854cd71ac026a3"
+  }
+}

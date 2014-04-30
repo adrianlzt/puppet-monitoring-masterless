@@ -1,0 +1,13 @@
+Icinga no pudo levantar por error.
+
+Puppet lentiiiiisimo 3314.50s
+
+
+
+Me queda hacer parte de los manifest de puppet para que funcione lo de monitorizar maquinas de openstack.
+Pillar la ip_floatente y usarla en vez de alguna de eth.
+
+
+También hay que hacer lo de que el código entre entornos sea igual y solo difiera por configuraciones metidas en hiera.
+
+Cambios-necesarios-produccion, falta por hacer lo que no está comentado.

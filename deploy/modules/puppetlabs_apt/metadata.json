@@ -1,0 +1,25 @@
+{
+  "name": "ploperations-puppetlabs_apt",
+  "version": "0.0.3",
+  "source": "https://github.com/puppetlabs-operations/puppet-puppetlabs_apt",
+  "author": "Puppet Labs Operations",
+  "license": "Apache 2.0",
+  "summary": "Installs the Puppet Labs community apt repository",
+  "description": "UNKNOWN",
+  "project_page": "UNKNOWN",
+  "dependencies": [
+    {
+      "name": "puppetlabs/apt",
+      "version_requirement": ">= 1.0.0"
+    }
+  ],
+  "types": [
+
+  ],
+  "checksums": {
+    "LICENSE": "8859ac3cfa5f6f85786625624a8c8a6a",
+    "Modulefile": "9466c19ccd845623857d08a7c33f89f8",
+    "README.markdown": "8264457dbf943d2c21900fd90c58f567",
+    "manifests/init.pp": "5900db41596264fd2f0d7f2749ed9539"
+  }
+}

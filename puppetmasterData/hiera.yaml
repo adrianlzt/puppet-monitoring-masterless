@@ -1,0 +1,27 @@
+---
+:backends:
+  - json
+  - postgres
+:json:
+  :datadir: /etc/puppet/hiera
+:postgres:
+  :datadir: /etc/puppet/hiera
+  :host: 127.0.0.1
+  :user: monitoring
+  :pass: monitoring
+  :database: monitoring
+:hierarchy:
+# JSON backend
+  - "%{::env}/icinga"
+  - "%{::env}/repos"
+# Postgres backend
+# For hosts
+  - host
+  - hostgroup
+  - project
+  - common
+# For VIPs
+  - vips
+# For Icinga
+  - icinga
+#  - timeperiods

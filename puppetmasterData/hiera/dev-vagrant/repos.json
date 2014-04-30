@@ -1,0 +1,28 @@
+{
+  "repos": [ 
+    {
+      "puppet_type" : "yumrepo",
+      "name"        : "labs-consol-stable",
+      "descr"       : "labs-consol-stable",
+      "baseurl"     : "http://labs.consol.de/repo/stable/rhel6/x86_64",
+      "enabled"     : 1,
+      "gpgcheck"    : 0
+    },
+    {
+      "puppet_type" : "yumrepo",
+      "name"        : "local",
+      "descr"       : "Local repository",
+      "baseurl"     : "file:///vagrant/localrepo",
+      "enabled"     : 1,
+      "gpgcheck"    : 0
+    },
+    {
+      "puppet_type" : "yumrepo",
+      "name"        : "bintray",
+      "descr"       : "Bintray repository",
+      "baseurl"     : "http://dl.bintray.com/adrianlzt/rpm",
+      "enabled"     : 1,
+      "gpgcheck"    : 0
+    }
+  ]
+}

@@ -1,0 +1,144 @@
+CAMBIOS ENTRE ENTORNO DE DESARROLLO Y PRE/PROD
+
+ESTO SE MANTIENE MANUAL
+manifests/nodes/icinga.pp
+Tiene muchas menos cosas
+Al final declara los dos nodos que hacen de icinga
+node 'esjc-dsmm-ms08p' inherits icinga { }
+node 'esjc-dsmm-ms09p' inherits icinga { }
+
+
+#modules/monitorizacion/manifests/icinga.pp
+#
+#service { 'icinga' :
+#-    enable     => true,
+#-    hasrestart => true,
+#-    hasstatus  => true,
+#+    noop       => true,
+#+    enable     => false,
+#+    hasrestart => false,
+#+    restart    => '/bin/touch /root/reboot_icinga',
+#+    hasstatus  => false,
+#+    status     => '/usr/sbin/crm resource status Icinga_ESJC-DSMM-CLS0XS',
+#}
+
+#modules/monitorizacion/manifests/params.pp (intentar conservar archivo)
+#  $icinga_root_dir = "/srv/nagios/icinga/etc"
+#  $icinga_conf_dir = "${icinga_root_dir}/conf.d"
+#  $icinga_log_file = "/srv/nagios/icinga/log/icinga.log"
+#  $icinga_object_cache_file = "/var/icinga/ramdisk/objects.cache"
+#  $icinga_precached_object_file = "/srv/nagios/icinga/spool/objects.precache"
+#  $icinga_status_file = "/var/icinga/ramdisk/status.dat"
+#  $icinga_external_command_buffer_slots = 32768
+#  $icinga_temp_file = "/var/icinga/ramdisk/icinga.tmp"
+#  $icinga_temp_path = "/var/icinga/ramdisk"
+#  $icinga_log_archive_path = "/srv/nagios/icinga/log/archives"
+#  $icinga_use_syslog = 0
+#  $icinga_check_result_reaper_frequency = 1
+#  $icinga_check_result_path = "/var/icinga/ramdisk"
+#  $icinga_service_check_timeout = 120
+#  $icinga_state_retention_file = "/srv/nagios/icinga/spool/retention.dat"
+#  $icinga_dump_retained_host_service_states_to_neb = 0
+#  $icinga_allow_empty_hostgroup_assignment = 1
+#  $icinga_service_check_timeout_state = "c"
+#  $icinga_date_format = "euro"
+#  $icinga_use_large_installation_tweaks = 1
+#  $icinga_child_processes_fork_twice = 0
+#  $icinga_debug_file = "/srv/nagios/icinga/log/icinga.debug"
+#  $icinga_passwd = "/srv/nagios/apache/passwd"
+
+
+#En el manifest del puppet master (puppetmaster no esta puppetizado, pero necesitamos este service). Al final del fichero
+#monitorizacion/manifests/puppetmaster.pp
+#service { 'puppetmaster':
+#  ensure => running,
+#  enable => true,
+#}
+
+#Configurar los repos de dsmctools y python (enablers) a través de proxy y en el site.pp, NO en el basic.pp
+
+#IDEA -> HACER UN FOR EN EL TEMPLATE Y UN PARAMETRO EN HIERA QUE SEA NAGIOSQL
+#El fichero de icinga.cfg sigue necesitando de cambios:
+#< cfg_file=<%= scope.lookupvar('monitorizacion::params::icinga_root_dir') %>/objects/timeperiods.cfg
+#< cfg_file=<%= scope.lookupvar('monitorizacion::params::icinga_root_dir') %>/objects/templates.cfg
+#---
+#> #cfg_file=<%= scope.lookupvar('monitorizacion::params::icinga_root_dir') %>/objects/timeperiods.cfg
+#> #cfg_file=<%= scope.lookupvar('monitorizacion::params::icinga_root_dir') %>/objects/templates.cfg
+#65a66,89
+#> 
+#> #########
+#> # NagiosQL
+#> #########
+#> 
+#> ## Timeperiods
+#> cfg_file=/srv/nagios/nagiosql/timeperiods.cfg
+#> ## Contacts
+#> cfg_file=/srv/nagios/nagiosql/contacts.cfg
+#> cfg_file=/srv/nagios/nagiosql/contactgroups.cfg
+#> cfg_file=/srv/nagios/nagiosql/contacttemplates.cfg
+#> ## Hosts
+#> cfg_file=/srv/nagios/nagiosql/hosttemplates.cfg
+#> cfg_file=/srv/nagios/nagiosql/hostgroups.cfg
+#> ## Services
+#> cfg_file=/srv/nagios/nagiosql/servicetemplates.cfg
+#> cfg_file=/srv/nagios/nagiosql/servicegroups.cfg
+#> #
+#> #Importamos configuraciones de los proyectos
+#> cfg_dir=/srv/nagios/nagiosql/proyectos
+#> 
+#> #########
+#> # Fin NagiosQL
+#> #########
+
+
+
+############################################################################################################
+CAMBIOS ENTRE PRE Y PROD
+
+#diff -r dsn_puppet.pre/manifests/nodes/icinga.pp dsn_puppet.pro/manifests/nodes/icinga.pp
+#17,18c17,18
+#< node 'esjc-dsmm-ms05s' inherits icinga { }
+#< node 'esjc-dsmm-ms06s' inherits icinga { }
+#---
+#> node 'esjc-dsmm-ms08p' inherits icinga { }
+#> node 'esjc-dsmm-ms09p' inherits icinga { }
+
+
+#diff -r dsn_puppet.pre/manifests/site.pp dsn_puppet.pro/manifests/site.pp
+#13,14c13,14
+#<     allowed_hosts => "10.26.236.136,10.26.236.137",
+#<     icinga_host => "10.26.236.182",
+#---
+#>     allowed_hosts => "10.26.204.139,10.26.204.140",
+#>     icinga_host => "10.26.204.185",
+
+#diff -r dsn_puppet.pre/modules/monitorizacion/manifests/icinga.pp dsn_puppet.pro/modules/monitorizacion/manifests/icinga.pp
+#41c41
+#<     status     => '/usr/sbin/crm resource status Icinga_ESJC-DSMM-CLS0XS',
+#---
+#>     status     => '/usr/sbin/crm resource status Icinga_ESJC-DSMM-CLS0XP',
+
+
+
+####################################
+Desplegando 0.6.0 en prepro
+####################################
+Modifico site.pp. No puedo substituirlo directamente porque en el de pp están configurados los repos de dsmc-tools y enablers-thirparty.
+También la primera linea tiene path para exec (esto se podría quitar)
+
+
+Modifico el hiera.yaml por si hemos agregado algo nuevo.
+Tampoco podemos substituirlo porque en el hiera.yaml de puppet está configurado para leer datos yaml de las iniciativas.
+También tenemos que agregar los nuevos ficheros .sql a /etc/puppet/hiera en caso de haber creado nuevos.
+
+
+Revisar si hemos modificado algo en los manifests de icinga o de puppet.
+Cuidado porque el manifest de icinga tiene muchas menos cosas configuradas que en el entorno de desarollo.
+También se definen los hostnames de los nodos del cluster icinga y se configuran para heredar del nodo icinga.
+En el nodo de icinga no se configura puppetdb con puppet (por lo que debemos eliminarlo).
+También deberemos modificar el virtualhost y document_root
+
+Modificar los manifest como se indica más arriba:
+  -service de icinga
+  -fichero de params
+  -service puppetmaster

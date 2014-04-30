@@ -1,0 +1,63 @@
+box = "centos64"
+
+Vagrant.configure("2") do |config|
+  config.vm.define "puppet" do |puppet|
+    puppet.vm.box = box
+    puppet.vm.hostname = "puppet.com"
+    
+    puppet.vm.network :private_network, ip: "192.168.51.2"
+
+    puppet.vm.provision :puppet do |puppet|
+      puppet.manifests_path = 'deploy/manifests'
+      puppet.manifest_file = 'puppet.pp'
+      puppet.module_path = 'deploy/modules'
+    end
+
+    puppet.vm.provision "shell", inline: "puppet agent -t"
+  end
+
+  config.vm.define "icinga" do |icinga|
+    icinga.vm.box = box
+    icinga.vm.hostname = "icinga.com"
+
+    icinga.vm.network "private_network", ip: "192.168.51.4"
+
+    icinga.vm.provision :puppet do |puppet|
+      puppet.manifests_path = 'deploy/manifests'
+      puppet.manifest_file = 'icinga.pp'
+      puppet.module_path = 'deploy/modules'
+    end
+
+    icinga.vm.provision "shell", inline: "puppet agent -t"
+  end
+
+  config.vm.define "client" do |client|
+    client.vm.box = box
+    client.vm.hostname = "client.com"
+
+    client.vm.network :private_network, ip: "192.168.51.3"
+
+    client.vm.provision :puppet do |puppet|
+      puppet.manifests_path = 'deploy/manifests'
+      puppet.manifest_file = 'client.pp'
+      puppet.module_path = 'deploy/modules'
+    end
+    
+    client.vm.provision "shell", inline: "puppet agent -t"
+  end
+
+  config.vm.define "client2" do |client|
+    client.vm.box = box
+    client.vm.hostname = "client2.com"
+
+    client.vm.network :private_network, ip: "192.168.51.5"
+
+    client.vm.provision :puppet do |puppet|
+      puppet.manifests_path = 'deploy/manifests'
+      puppet.manifest_file = 'client2.pp'
+      puppet.module_path = 'deploy/modules'
+    end
+
+    client.vm.provision "shell", inline: "puppet agent -t"
+  end
+end

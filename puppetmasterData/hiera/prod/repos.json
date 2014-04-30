@@ -1,0 +1,22 @@
+{
+  "repos": [ 
+    {
+      "puppet_type" : "yumrepo",
+      "name"        : "dsmc-tools",
+      "descr"       : "dsmc-tools",
+      "baseurl"     : "http://artifacts.hi.inet/dsmc/prod",
+      "proxy"       : "http://proxy2pdi.service.dsn.inet:6666",
+      "enabled"     : 1,
+      "gpgcheck"    : 0
+    },
+    {
+      "puppet_type" : "yumrepo",
+      "name"        : "enablers-thirdparty",
+      "descr"       : "enablers-thirdparty",
+      "baseurl"     : "http://artifacts.hi.inet/enablers/thirdparty",
+      "proxy"       : "http://proxy2pdi.service.dsn.inet:6666",
+      "enabled"     : 1,
+      "gpgcheck"    : 0
+    }
+  ]
+}
