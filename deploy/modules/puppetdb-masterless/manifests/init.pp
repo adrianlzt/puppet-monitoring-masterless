@@ -27,23 +27,17 @@ class puppetdb-masterless (
     owner => 'root',
     group => 'root',
     mode => '0644',
-    require => Package['puppetmaster'],
-    before => Service['puppetmaster'],
   }
 
   file { '/etc/puppet/manifests/nodes':
     ensure => 'link',
     target => '/vagrant/puppetmasterData/nodes',
     force => true,
-    require => Package['puppetmaster'],
-    before => Service['puppetmaster'],
   }
 
   file { '/etc/puppet/modules':
     ensure => 'link',
     target => '/vagrant/puppetmasterData/modules',
     force => true,
-    require => Package['puppetmaster'],
-    before => Service['puppetmaster'],
   }
 }
