@@ -28,7 +28,7 @@ Vagrant.configure("2") do |config|
       puppet.module_path = 'deploy/modules'
     end
 
-    icinga.vm.provision "shell", inline: "puppet agent -t"
+#    icinga.vm.provision "shell", inline: "puppet apply /etc/puppet/manifests/site.pp"
   end
 
   config.vm.define "client" do |client|
@@ -43,7 +43,7 @@ Vagrant.configure("2") do |config|
       puppet.module_path = 'deploy/modules'
     end
     
-    client.vm.provision "shell", inline: "puppet agent -t"
+#    client.vm.provision "shell", inline: "puppet apply /etc/puppet/manifests/site.pp"
   end
 
   config.vm.define "client2" do |client|
@@ -58,6 +58,6 @@ Vagrant.configure("2") do |config|
       puppet.module_path = 'deploy/modules'
     end
 
-    client.vm.provision "shell", inline: "puppet agent -t"
+#    client.vm.provision "shell", inline: "puppet apply /etc/puppet/manifests/site.pp"
   end
 end
